@@ -1,0 +1,92 @@
+.Scoreboard {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  padding: 2rem 0;
+  background: #ff6464;
+  position: relative;
+}
+
+.Scoreboard-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.upper,
+.lower {
+  list-style: none;
+  color: #57001e;
+  background: #ffb99a;
+  box-shadow: 0 0 0.3rem #000;
+  margin: 1rem 1.5rem;
+}
+
+.upper-scores,
+.lower-scores {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.upper-scores:not(:last-child),
+.lower-scores:not(:last-child) {
+  border-bottom: 1px solid #57001e;
+}
+
+.upper-scores:hover,
+.lower-scores:hover {
+  color: #f4f4f4;
+  background-color: #851d41;
+}
+
+.upper-scores span:first-child,
+.lower-scores span:first-child {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.upper-scores span:last-child,
+.lower-scores span:last-child {
+  font-size: 1.2rem;
+}
+
+.disabled {
+  text-decoration: line-through;
+  color: #ffb99a;
+  background-color: #57001e;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.disabled:not(:last-child) {
+  border-bottom: 1px solid #fff;
+}
+
+.disable:hover,
+.disabled:active {
+  background-color: #57001e;
+}
+
+@media only screen and (max-width: 700px) {
+  .Scoreboard {
+    display: block;
+    padding: 1.5rem 0;
+  }
+
+  .upper,
+  .lower {
+    margin: 1.65rem 1.5rem;
+  }
+
+  .upper-scores span:first-child,
+  .lower-scores span:first-child {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .upper-scores span:last-child,
+  .lower-scores span:last-child {
+    font-size: 1rem;
+  }
+}
