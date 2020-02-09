@@ -119,10 +119,9 @@ function update3Or4OfAKind(n, arr) {
     obj[item] = obj[item] + 1
     return ''
   })
-  console.log(obj)
 
   for (let i in obj) {
-    if (obj[i] <= n) {
+    if (obj[i] >= n) {
       score = arr.reduce((acc, curr) => acc + curr)
       break
     }
