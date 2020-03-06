@@ -60,7 +60,7 @@ function calcScore(type, diceArr, shouldCalc) {
         arr.sort()
         for (let i = 0; i < arr.length - 1; i++) {
           if (arr[i + 1] === arr[i] + 1) counter++
-          else if (arr[i + 1] === arr[i] + 1) continue
+          else if (arr[i + 1] === arr[i]) continue
           else counter = 0
 
           if (counter === 3) {

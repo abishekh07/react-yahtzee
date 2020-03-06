@@ -91,6 +91,45 @@
   }
 }
 
+.score-counter {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: #ffb99a;
+  height: 20rem;
+  width: 25rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.75);
+  outline: 2px dashed #57001e;
+  outline-offset: -2rem;
+  z-index: 90;
+  transition: transform 1s;
+  transform-origin: bottom;
+}
+
+.score-counter > * {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.score-counter p {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  top: 40%;
+  left: 50%;
+}
+
+.score-counter span {
+  color: #57001e;
+  font-size: 3rem;
+  top: 70%;
+  left: 50%;
+}
+
+.dim {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 600px) {
   .upper-scores:hover,
   .lower-scores:hover {
