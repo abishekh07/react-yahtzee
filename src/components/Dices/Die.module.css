@@ -1,0 +1,37 @@
+.die {
+  cursor: pointer;
+  color: #ffb99a;
+  font-size: 4.5rem;
+  margin: 0 1.5rem;
+  filter: drop-shadow(0 2px 2px #222930);
+  transition: all 0.3s, opacity 1s, transform 1s;
+}
+
+.die__animate {
+  animation: fan 1s ease-in-out;
+}
+
+.die__disabled {
+  color: #5d0021;
+  filter: none;
+}
+
+@keyframes fan {
+  0% {
+    opacity: 0.6;
+    transform: rotate(0deg);
+    pointer-events: all;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(360deg);
+    pointer-events: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .die {
+    margin: 0 0.75rem;
+  }
+}
