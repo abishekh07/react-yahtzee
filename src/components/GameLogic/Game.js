@@ -1,4 +1,5 @@
 import Dice from "../Dices/Dice";
+import Scoreboard from "../ScoreboardLogic/Scoreboard";
 import styles from "./Game.module.css";
 import { useState } from "react";
 
@@ -35,13 +36,14 @@ function Game() {
     const diceNums = [];
 
     for (let i = 0; i < NUM_DICE; i++) {
-      const randNum = Math.floor(Math.random() * 6 + 1);
+      const randDiceNum = Math.floor(Math.random() * 6 + 1);
 
       /* Only alter dice that are not locked. Else load Previous Values */
 
       const diceValue = !gameState.diceLocked[i]
-        ? randNum
+        ? randDiceNum
         : gameState.diceArr[i];
+
       diceNums.push(diceValue);
     }
 
@@ -70,6 +72,31 @@ function Game() {
     animateDice();
   }
 
+  function updateScore(score, className) {
+    setGameState((prevState) => {
+      const scores = { ...prevState.scores };
+      scores[className] = score;
+
+      return {
+        ...prevState,
+        scores
+      };
+    });
+  }
+
+  function resetGame() {
+    setGameState((prevState) => {
+      return {
+        ...prevState,
+        diceLocked: new Array(5).fill(false),
+        rollsLeft: ROLLS_LEFT,
+        shouldAnimate: false
+      };
+    });
+
+    document.querySelector("#roll-dice-btn").disabled = false;
+  }
+
   function toggleLockedState(index) {
     setGameState((prevState) => {
       return {
@@ -84,7 +111,7 @@ function Game() {
   }
 
   const areRollsLeft = gameState.rollsLeft > 0;
-  const rollDiceBtn = document.querySelector(".game__btn");
+  const rollDiceBtn = document.querySelector("#roll-dice-btn");
   const shouldAnimate = gameState.shouldAnimate;
 
   if (!areRollsLeft) {
@@ -116,10 +143,24 @@ function Game() {
           shouldAnimate={gameState.shouldAnimate}
         />
 
-        <button className={styles.game__btn} onClick={shuffleDice}>
+        <button
+          id="roll-dice-btn"
+          className={styles.game__btn}
+          onClick={shuffleDice}
+        >
           {rollDiceBtnTxt}
         </button>
       </header>
+
+      <section className="Game-section">
+        <Scoreboard
+          diceArr={gameState.diceArr}
+          updateScore={updateScore}
+          rollsLeft={gameState.rollsLeft}
+          scores={gameState.scores}
+          resetGame={resetGame}
+        />
+      </section>
     </div>
   );
 }
